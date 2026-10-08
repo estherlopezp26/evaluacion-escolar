@@ -1,3 +1,24 @@
+# AulaEval 3.0 — edición reparada (pantalla de acceso)
+
+Esta edición corrige la incompatibilidad entre el HTML antiguo y el JavaScript V3: elimina la pantalla de conexión, agrega el botón de recuperación, el selector de espacios y carga `config.js` antes de `app.js`.
+
+**Publicación en GitHub + Netlify**
+1. Descomprime el ZIP y sube su contenido (no el ZIP) a la raíz del repositorio GitHub, reemplazando los archivos antiguos. Conserva `scripts/build.mjs`.
+2. En el sitio Netlify existente, conecta ese repositorio y confirma `Build command: npm run build` y `Publish directory: dist`.
+3. Configura `SUPABASE_URL` y `SUPABASE_PUBLISHABLE_KEY` como variables de entorno. Solo usa claves `sb_publishable_` o `anon`, nunca `service_role` ni `sb_secret_`.
+4. El archivo `netlify.toml` exceptúa solo esas dos variables públicas del escaneo.
+5. Inicia una nueva publicación. Abre el sitio y comprueba que aparece **Iniciar sesión**, no **Conectar**.
+6. En Supabase Authentication configura la URL de tu sitio y los redirects para recuperación de contraseña.
+7. Inicia sesión. En el panel lateral, **Gestionar espacios** permite crear un colegio, invitar docentes y unirse con código.
+
+**Migración y datos:** `MIGRACION_V3.sql` se incluye como referencia. Si ya la ejecutaste correctamente, **no la ejecutes otra vez**. Esta reparación es de interfaz y compilación, no requiere modificar SQL. Si aún no aplicaste la migración, realiza primero un respaldo y pruébala en una copia de la base.
+
+**Limitación:** No se ha verificado contra tu Supabase real. Los docentes de un colegio compartido pueden modificar todos los registros de ese colegio; no hay permisos por asignatura ni historial de auditoría.
+
+**Si aparece una página antigua:** comprueba que Netlify despliega el repositorio correcto y la última publicación, y fuerza la recarga del navegador (Ctrl+Shift+R).
+
+---
+
 # AulaEval 3.0 — despliegue y migración desde V2
 
 ## Qué incluye
