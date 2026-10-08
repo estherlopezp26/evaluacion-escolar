@@ -9,3 +9,8 @@ for = "/*"
 X-Content-Type-Options = "nosniff"
 Referrer-Policy = "strict-origin-when-cross-origin"
 X-Frame-Options = "DENY"
+
+# La URL y la clave publishable de Supabase son públicas por diseño.
+# Mantener el escaneo activo para cualquier otra credencial.
+[secrets_scanning]
+omit_keys = ["SUPABASE_URL", "SUPABASE_PUBLISHABLE_KEY"]
